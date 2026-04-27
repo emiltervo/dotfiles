@@ -18,6 +18,12 @@
         "git.confirmSync" = false;
         "telemetry.telemetryLevel" = "off";
         "terminal.integrated.defaultProfile.osx" = "zsh";
+        "terminal.integrated.profiles.osx" = {
+          zsh = {
+            path = "/run/current-system/sw/bin/zsh";
+            args = [ "-i" ];
+          };
+        };
         "workbench.startupEditor" = "none";
       };
 

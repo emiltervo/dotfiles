@@ -17,6 +17,7 @@
       "brave-browser"
       "chatgpt"
       "claude"
+      "codex-app"
       "cursor"
       "discord"
       "docker-desktop"
@@ -33,6 +34,7 @@
       "vlc"
       "warp"
       "zoom"
+      "signal"
     ];
 
     masApps = {
