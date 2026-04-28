@@ -23,6 +23,11 @@
     "8.8.4.4"
   ];
 
+  services.mullvad-vpn = {
+    enable = true;
+    package = pkgs.mullvad-vpn;
+  };
+
   time.timeZone = "Europe/Stockholm";
 
   i18n.defaultLocale = "en_US.UTF-8";

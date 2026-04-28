@@ -16,7 +16,6 @@
       # nix attribute names with hyphens can’t be referenced bare inside `with pkgs; [ ... ]`.
       codeCursor = builtins.getAttr "code-cursor" pkgs;
       googleChrome = builtins.getAttr "google-chrome" pkgs;
-      mullvadVpn = builtins.getAttr "mullvad-vpn" pkgs;
       signalDesktop = builtins.getAttr "signal-desktop" pkgs;
       warpTerminal = builtins.getAttr "warp-terminal" pkgs;
       zoomUs = builtins.getAttr "zoom-us" pkgs;
@@ -30,7 +29,6 @@
       codeCursor
       discord
       googleChrome
-      mullvadVpn
       obsidian
       postman
       signalDesktop
