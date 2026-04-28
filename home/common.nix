@@ -40,6 +40,7 @@ in
     bat
     eza
     fzf
+    gh
     lazygit
     zoxide
   ];
