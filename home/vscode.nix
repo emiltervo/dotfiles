@@ -1,15 +1,15 @@
-{ ... }:
+{ pkgs, lib, ... }:
 {
   programs.vscode = {
     enable = true;
-    package = null;
-    pname = "vscode";
+    package = pkgs.vscode;
 
     profiles.default = {
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
 
-      userSettings = {
+      userSettings =
+        {
         "editor.fontLigatures" = true;
         "editor.formatOnSave" = true;
         "editor.inlineSuggest.enabled" = true;
@@ -17,15 +17,17 @@
         "files.trimTrailingWhitespace" = true;
         "git.confirmSync" = false;
         "telemetry.telemetryLevel" = "off";
-        "terminal.integrated.defaultProfile.osx" = "zsh";
-        "terminal.integrated.profiles.osx" = {
-          zsh = {
-            path = "/run/current-system/sw/bin/zsh";
-            args = [ "-i" ];
+        "workbench.startupEditor" = "none";
+        }
+        // lib.optionalAttrs pkgs.stdenv.isDarwin {
+          "terminal.integrated.defaultProfile.osx" = "zsh";
+          "terminal.integrated.profiles.osx" = {
+            zsh = {
+              path = "/run/current-system/sw/bin/zsh";
+              args = [ "-i" ];
+            };
           };
         };
-        "workbench.startupEditor" = "none";
-      };
 
       extensions = [
         # Add packaged extensions here for reproducible installs across machines.
