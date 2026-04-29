@@ -15,6 +15,18 @@
 
   outputs = inputs@{ self, nix-darwin, home-manager, nixpkgs, ... }:
     let
+      mkHomeManagerModule =
+        { username, hostname, homeModule }:
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "pre-home-manager-backup";
+          home-manager.extraSpecialArgs = {
+            inherit username hostname;
+          };
+          home-manager.users.${username} = import homeModule;
+        };
+
       darwinUsername = "emiltervo";
       darwinHostname = "Emils-MacBook-Pro-2";
 
@@ -33,16 +45,11 @@
         modules = [
           ./hosts/Emils-MacBook-Pro-2
           home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "pre-home-manager-backup";
-            home-manager.extraSpecialArgs = {
-              username = darwinUsername;
-              hostname = darwinHostname;
-            };
-            home-manager.users.${darwinUsername} = import ./home/emiltervo.nix;
-          }
+          (mkHomeManagerModule {
+            username = darwinUsername;
+            hostname = darwinHostname;
+            homeModule = ./home/users/emiltervo.nix;
+          })
         ];
       };
 
@@ -56,16 +63,11 @@
         modules = [
           ./hosts/rapidash
           home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "pre-home-manager-backup";
-            home-manager.extraSpecialArgs = {
-              username = nixosUsername;
-              hostname = nixosHostname;
-            };
-            home-manager.users.${nixosUsername} = import ./home/lovelace.nix;
-          }
+          (mkHomeManagerModule {
+            username = nixosUsername;
+            hostname = nixosHostname;
+            homeModule = ./home/users/lovelace.nix;
+          })
         ];
       };
     };

@@ -1,10 +1,7 @@
 { self, pkgs, hostname, ... }:
 {
   imports = [
-    ../../modules/base.nix
-    ../../modules/languages.nix
-    ../../modules/packages.nix
-    ../../modules/homebrew.nix
+    ../../systems/darwin
   ];
 
   networking.hostName = hostname;

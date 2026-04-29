@@ -4,8 +4,8 @@ This file captures what was found on the machine during the initial cleanup pass
 
 ## Declared in Nix now
 
-- CLI packages are split between `modules/packages.nix` and `modules/homebrew.nix`.
-- GUI applications with obvious Homebrew casks were added to `modules/homebrew.nix`.
+- CLI packages are split between `systems/darwin/packages.nix`, `systems/darwin/languages.nix`, and Home Manager.
+- GUI applications with obvious Homebrew casks were added to `systems/darwin/homebrew.nix`.
 - A few App Store applications were added to `masApps`.
 
 ## Apps detected in `/Applications` but not declared yet

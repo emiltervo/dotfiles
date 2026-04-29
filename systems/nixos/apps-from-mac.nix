@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 {
-  # Apps brought over from `modules/homebrew.nix` (macOS),
+  # Apps brought over from `systems/darwin/homebrew.nix`,
   # filtered to things that exist on NixOS/nixpkgs.
   #
   # Not brought over (macOS-only / not found in nixpkgs channel here):
@@ -15,6 +15,7 @@
     let
       # nix attribute names with hyphens can’t be referenced bare inside `with pkgs; [ ... ]`.
       codeCursor = builtins.getAttr "code-cursor" pkgs;
+      bitwardenDesktop = builtins.getAttr "bitwarden-desktop" pkgs;
       googleChrome = builtins.getAttr "google-chrome" pkgs;
       signalDesktop = builtins.getAttr "signal-desktop" pkgs;
       warpTerminal = builtins.getAttr "warp-terminal" pkgs;
@@ -25,6 +26,7 @@
     in
     with pkgs;
     [
+      bitwardenDesktop
       brave
       codeCursor
       discord

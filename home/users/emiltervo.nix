@@ -1,9 +1,9 @@
 { pkgs, ... }:
 {
   imports = [
-    ./vscode.nix
-    ./common.nix
-    ./darwin.nix
+    ../common
+    ../platforms/darwin.nix
+    ../programs/vscode.nix
   ];
 
   home.stateVersion = "25.05";

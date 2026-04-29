@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
   linuxAliases = {
-    codenix = "code $HOME/dotfiles";
+    codenix = "sudo code $HOME/dotfiles";
     config-nix = "cd $HOME/dotfiles";
     build-nix = "nixos-rebuild build --flake path:$HOME/dotfiles#nixos";
     switch-nix = "sudo nixos-rebuild switch --flake path:$HOME/dotfiles#nixos";
@@ -25,6 +25,10 @@ in
     "org/gnome/desktop/wm/keybindings" = {
       switch-input-source = [ ];
       switch-input-source-backward = [ ];
+    };
+
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = ":minimize,maximize,close";
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {

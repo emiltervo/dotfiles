@@ -16,12 +16,17 @@
 
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.powersave = false;
   networking.nameservers = [
     "1.1.1.1"
     "1.0.0.1"
     "8.8.8.8"
     "8.8.4.4"
   ];
+
+  boot.extraModprobeConfig = ''
+    options mt7925e disable_aspm=Y
+  '';
 
   services.mullvad-vpn = {
     enable = true;

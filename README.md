@@ -7,28 +7,24 @@ This repository contains:
 ## Structure
 
 - `flake.nix`: flake inputs and host definitions
-- `hosts/Emils-MacBook-Pro-2`: machine-specific settings
-- `hosts/rapidash`: NixOS flake host (full NixOS config lives in this repo)
-- `modules/base.nix`: shared macOS and Nix defaults
-- `modules/languages.nix`: explicit language toolchains and formatters
-- `modules/packages.nix`: system packages installed with Nix
-- `modules/homebrew.nix`: Homebrew formulae, casks, and App Store apps
-- `modules/nixos/apps-from-mac.nix`: Linux-available equivalents of macOS GUI apps + Docker/Steam toggles
-- `home/emiltervo.nix`: user shell, git, and home-level packages via Home Manager
-- `home/common.nix`: cross-platform Home Manager settings
-- `home/darwin.nix`: macOS-only Home Manager settings
-- `home/linux.nix`: Linux-only Home Manager settings
-- `home/lovelace.nix`: NixOS user Home Manager entrypoint
+- `hosts/<name>`: machine-specific host entrypoints and hardware files
+- `systems/darwin`: darwin system modules grouped by concern
+- `systems/nixos`: NixOS-only system modules grouped by concern
+- `home/common`: shared Home Manager modules split by feature
+- `home/platforms`: platform-specific Home Manager modules
+- `home/programs`: program-specific Home Manager modules
+- `home/users`: per-user Home Manager entrypoints
 - `MIGRATION.md`: inventory of apps found during the cleanup pass
 
 ## What goes where
 
-- Put CLI tools in `modules/packages.nix` or `home/emiltervo.nix`
-- Put GUI apps from Homebrew in `modules/homebrew.nix`
-- Put App Store apps in `modules/homebrew.nix` under `masApps`
-- Put macOS defaults and system-wide behavior in `modules/base.nix`
-- Put Linux GUI apps / NixOS services in `modules/nixos/apps-from-mac.nix`
-- Put cross-platform shell/git config in `home/common.nix`
+- Put darwin system defaults in `systems/darwin/base.nix`
+- Put darwin package sets in `systems/darwin/packages.nix` and `systems/darwin/languages.nix`
+- Put Homebrew formulae, casks, and App Store apps in `systems/darwin/homebrew.nix`
+- Put Linux GUI apps and related NixOS service toggles in `systems/nixos/apps-from-mac.nix`
+- Put shared shell, git, and package config in `home/common/`
+- Put per-platform Home Manager behavior in `home/platforms/`
+- Keep `hosts/` thin and host-specific
 
 ## First activation
 
@@ -41,7 +37,7 @@ sudo darwin-rebuild switch --flake /private/etc/nix-darwin#Emils-MacBook-Pro-2
 ### NixOS
 
 ```sh
-sudo nixos-rebuild switch --flake path:/home/lovelace/dotfiles#rapidash
+sudo nixos-rebuild switch --flake path:/home/lovelace/dotfiles#nixos
 ```
 
 ## Suggested cleanup path
